@@ -34,4 +34,22 @@ const fetchCardData = async () => {
     }
 }
 
+
+export const fetchRevenue = async () => {
+  try {
+    const fetchRevenue = await fetch(`${process.env.BACKEND_URL}/revenues`, {
+      headers
+    });
+    const revenueResult = await fetchRevenue.json();
+    console.log("Fetching Revenue data...", revenueResult);
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    console.log("Data completed after 3 seconds.");
+
+    return revenueResult;
+  } catch (error) {
+    console.log("error :>> ", error);
+    throw new Error("Failed to fetch fetchRevenue data.");
+  }
+};
+
 export default fetchCardData;
