@@ -5,6 +5,7 @@ import { fetchRevenue } from "@/app/helpers/api";
 
 const Dashboard = async() => {
     const revenue = await fetchRevenue(); 
+    const latestInvoices = await fetchLatestInvoices(); 
     return (
         <main>
             <h1 className={`${bebas.className} mb-4 text-xl md:text-2xl`}  >Dashboard</h1>

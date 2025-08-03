@@ -41,7 +41,7 @@ export const fetchRevenue = async () => {
       headers
     });
     const revenueResult = await fetchRevenue.json();
-    console.log("Fetching Revenue data...", revenueResult);
+    console.log("Fetching Revenue data...");
     await new Promise(resolve => setTimeout(resolve, 3000));
     console.log("Data completed after 3 seconds.");
 
@@ -49,6 +49,20 @@ export const fetchRevenue = async () => {
   } catch (error) {
     console.log("error :>> ", error);
     throw new Error("Failed to fetch fetchRevenue data.");
+  }
+};
+
+export const fetchLatestInvoices = async () => {
+  try {
+    const fetchInvoices = await fetch(`${process.env.BACKEND_URL}/invoices`, {
+      headers
+    });
+    const resultFetchInvoices = await fetchInvoices.json();
+    console.log("Fetching Latest Invoices data...", resultFetchInvoices);
+    return resultFetchInvoices;
+  } catch (error) {
+    console.log("error :>> ", error);
+    throw new Error("Failed to fetch fetchLatestInvoices data.");
   }
 };
 
