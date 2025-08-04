@@ -1,7 +1,8 @@
 import { bebas } from "../ui/fonts";
 import CardWrapper from "../components/CardWrapper";
 import ChartWrapper from "../components/ChartWrapper";
-import { fetchRevenue } from "@/app/helpers/api";
+import { fetchRevenue,fetchLatestInvoices } from "@/app/helpers/api";
+import LatestInvoicesWrapper from "../components/LatestInvoicesWrapper";
 
 const Dashboard = async() => {
     const revenue = await fetchRevenue(); 
@@ -19,6 +20,7 @@ const Dashboard = async() => {
                 </div>
                 <div className="w-full md:col-span-4">
                     <h2 className={`${bebas.className} mb-4 text-xl md:text-2xl`}>Latest Invoices</h2>
+                    <LatestInvoicesWrapper amount={latestInvoices}/>
                 </div>
             </div>
         </main>

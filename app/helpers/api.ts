@@ -58,7 +58,6 @@ export const fetchLatestInvoices = async () => {
       headers
     });
     const resultFetchInvoices = await fetchInvoices.json();
-    console.log("Fetching Latest Invoices data...", resultFetchInvoices);
     return resultFetchInvoices;
   } catch (error) {
     console.log("error :>> ", error);
