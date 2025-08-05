@@ -1,8 +1,10 @@
-import { bebas } from "../ui/fonts";
-import CardWrapper from "../components/CardWrapper";
-import ChartWrapper from "../components/ChartWrapper";
+import { bebas } from "../../ui/fonts";
+import CardWrapper from "../../components/CardWrapper";
+import ChartWrapper from "../../components/ChartWrapper";
 import { fetchRevenue,fetchLatestInvoices } from "@/app/helpers/api";
-import LatestInvoicesWrapper from "../components/LatestInvoicesWrapper";
+import LatestInvoicesWrapper from "../../components/LatestInvoicesWrapper";
+import { Suspense } from "react";
+import { RevenueChartSkeleton } from "@/app/components/Skeleton";
 
 const Dashboard = async() => {
     const revenue = await fetchRevenue(); 
@@ -16,7 +18,9 @@ const Dashboard = async() => {
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
                 <div className="w-full md:col-span-4">
                     <h2 className={`${bebas.className} mb-4 text-xl md:text-2xl`}>Recent Revenues</h2>
-                    <ChartWrapper revenue={revenue}/>
+                    <Suspense fallback={<RevenueChartSkeleton />} >
+                        <ChartWrapper revenue={revenue}/>
+                    </Suspense>                    
                 </div>
                 <div className="w-full md:col-span-4">
                     <h2 className={`${bebas.className} mb-4 text-xl md:text-2xl`}>Latest Invoices</h2>
